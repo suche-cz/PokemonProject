@@ -5,9 +5,18 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+# Django DB ORM
+# Django
+# DB - databáze
+# ORM - Object Relation Mapper
+
+"""
+[Model].objects.count() //
+"""
+
 class Pokemon(models.Model):
-    number = models.PositiveSmallIntegerField()
-    name = models.CharField(max_length=50, verbose_name='Název')
+    number = models.PositiveSmallIntegerField(unique=True)
+    name = models.CharField(max_length=50, verbose_name='Název 1')
     slug = models.SlugField(max_length=50)
     categories = models.ManyToManyField('Category', blank=True)
 
