@@ -3,7 +3,13 @@ from pokemon import models
 
 
 admin.site.register([
-    models.Pokemon,
     models.Category,
-    models.Comment,
+    models.Pokemon,
 ])
+
+
+@admin.register(models.Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['text', 'pokemon', 'pokemon_id', 'user', 'create_dt']
+
+

@@ -35,3 +35,29 @@ Foreign Key: models.ForeignKey('OtherModel', on_delete=models.CASCADE)
 Many to Many: models.ManyToManyField('OtherModel')
 
 Reverse lookup: other_obj.mymodel_set.all()
+
+----------------------------------------------------------
+
+>>> Pokemon.objects.all().update(name="Hahaha") # hramadný update
+
+>>> pokemon1.delete() # delete 1 objektu
+
+>>> Pokemon.objects.all().delete() # delete všech
+
+>>> p1 = Pokemon(number=1001, name='poke1', slug='poke1') # vytvoření instance v paměti
+>>> p1.save() # uložení do DB
+
+
+>>> p1.categories # toto je M2M manager
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x0000014496E53380>
+
+>>> p1.categories.all() # kategorie napojené na p1
+<QuerySet []>
+
+>>> c1 = Category.objects.first() # získání nějaké kategorie
+>>> c1
+<Category: test kategorie>
+
+>>> p1.categories.add(c1) # přídání kategorie do p1
+>>> p1.categories.all()
+<QuerySet [<Category: test kategorie>]>
